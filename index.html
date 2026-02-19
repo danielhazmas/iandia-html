@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -68,13 +68,20 @@ img{display:block;max-width:100%}
 .fade-scale{opacity:0;transform:scale(.8);transition:all .6s cubic-bezier(.22,1,.36,1)}
 .fade-scale.visible{opacity:1;transform:scale(1)}
 
-/* ── Section backgrounds ── */
-.bg-hero{background:radial-gradient(ellipse at 20% 50%,rgba(37,99,235,.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(6,182,212,.12) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(99,102,241,.1) 0%,transparent 50%)}
-.bg-services{background:radial-gradient(ellipse at 70% 30%,rgba(99,102,241,.14) 0%,transparent 50%),radial-gradient(ellipse at 20% 70%,rgba(59,130,246,.12) 0%,transparent 50%)}
-.bg-work{background:radial-gradient(ellipse at 30% 40%,rgba(6,182,212,.13) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(37,99,235,.15) 0%,transparent 50%)}
-.bg-process{background:radial-gradient(ellipse at 60% 30%,rgba(59,130,246,.12) 0%,transparent 50%),radial-gradient(ellipse at 20% 80%,rgba(147,197,253,.15) 0%,transparent 50%)}
-.bg-cta{background:radial-gradient(ellipse at 50% 50%,rgba(37,99,235,.18) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(6,182,212,.12) 0%,transparent 50%)}
-.bg-footer{background:radial-gradient(ellipse at 50% 50%,rgba(59,130,246,.06) 0%,transparent 60%)}
+/* ── Section backgrounds with real images ── */
+:root{--img-base:url('https://raw.githubusercontent.com/danielhazmas/iandia-html/main/images/')}
+.bg-section{position:relative}
+.bg-section::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;opacity:.18;filter:blur(2px);z-index:0;transition:opacity 1.2s ease}
+.bg-section.visible::before{opacity:.25}
+.bg-section::after{content:'';position:absolute;inset:0;backdrop-filter:blur(30px) saturate(1.4);-webkit-backdrop-filter:blur(30px) saturate(1.4);background:rgba(255,255,255,.72);z-index:1}
+.bg-section>*{position:relative;z-index:2}
+.bg-hero::before{background-image:url('https://raw.githubusercontent.com/danielhazmas/iandia-html/main/images/hero-bg.jpg');opacity:.22;filter:blur(3px)}
+.bg-hero::after{background:rgba(255,255,255,.68);backdrop-filter:blur(20px)}
+.bg-services::before{background-image:url('https://raw.githubusercontent.com/danielhazmas/iandia-html/main/images/services-bg.jpg')}
+.bg-work::before{background-image:url('https://raw.githubusercontent.com/danielhazmas/iandia-html/main/images/work-bg.jpg')}
+.bg-process::before{background-image:url('https://raw.githubusercontent.com/danielhazmas/iandia-html/main/images/process-bg.jpg')}
+.bg-cta::before{background-image:url('https://raw.githubusercontent.com/danielhazmas/iandia-html/main/images/cta-bg.jpg')}
+.bg-footer::before{background-image:url('https://raw.githubusercontent.com/danielhazmas/iandia-html/main/images/footer-bg.jpg');opacity:.1}
 
 /* ── Hero ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:140px 24px 80px;position:relative;overflow:hidden}
@@ -216,7 +223,7 @@ img{display:block;max-width:100%}
 <!-- ═══ NAVBAR ═══ -->
 <nav class="navbar" id="navbar">
   <div class="navbar-wrap">
-    <a href="#" class="nav-logo"><img src="https://raw.githubusercontent.com/danielhazmas/iandia-web-2/main/public/images/iandia-logo.png" alt="IANDIA"></a>
+    <a href="#" class="nav-logo"><img src="https://raw.githubusercontent.com/danielhazmas/iandia-html/main/images/iandia-logo.png" alt="IANDIA"></a>
     <div class="navbar-glass">
       <div class="nav-links">
         <a href="#home">Home</a>
@@ -233,7 +240,7 @@ img{display:block;max-width:100%}
 </nav>
 
 <!-- ═══ HERO ═══ -->
-<section class="hero bg-hero" id="home">
+<section class="hero bg-hero bg-section" id="home">
   <!-- Ambient orbs -->
   <div class="hero-orb hero-orb-1"></div>
   <div class="hero-orb hero-orb-2"></div>
@@ -286,7 +293,7 @@ img{display:block;max-width:100%}
 </section>
 
 <!-- ═══ SERVICES ═══ -->
-<div class="section bg-services reveal-section" id="services">
+<div class="section bg-services bg-section reveal-section" id="services">
   <div class="section-header">
     <div class="section-tag fade-scale">What We Do</div>
     <h2 class="section-title fade-up">Built for the <span class="gradient">AI era</span></h2>
@@ -324,7 +331,7 @@ img{display:block;max-width:100%}
 </div>
 
 <!-- ═══ CASE STUDIES ═══ -->
-<div class="section bg-work reveal-section" id="work">
+<div class="section bg-work bg-section reveal-section" id="work">
   <div class="section-header">
     <div class="section-tag fade-scale">Case Studies</div>
     <h2 class="section-title fade-up">Proven <span class="gradient">results</span></h2>
@@ -349,7 +356,7 @@ img{display:block;max-width:100%}
 </div>
 
 <!-- ═══ PROCESS ═══ -->
-<div class="section bg-process reveal-section">
+<div class="section bg-process bg-section reveal-section">
   <div class="section-header">
     <div class="section-tag fade-scale">Our Process</div>
     <h2 class="section-title fade-up">Concept to <span class="gradient">production</span></h2>
@@ -363,7 +370,7 @@ img{display:block;max-width:100%}
 </div>
 
 <!-- ═══ CTA ═══ -->
-<div class="section bg-cta reveal-section" id="about">
+<div class="section bg-cta bg-section reveal-section" id="about">
   <div class="glass-card cta-card fade-up" data-delay="0.1" style="cursor:default">
     <div class="glow-1"></div><div class="glow-2"></div>
     <div style="position:relative;z-index:10">
@@ -372,17 +379,17 @@ img{display:block;max-width:100%}
       <p class="fade-up" data-delay="0.4">Partner with a team that lives and breathes AI. From concept to production, we'll transform your most ambitious ideas into intelligent reality.</p>
       <div class="cta-btns fade-up" data-delay="0.5">
         <button class="btn btn-primary">Schedule a Call <span class="shimmer"></span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-        <button class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> hello@iandia.ai</button>
+        <button class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b6ded3dadad9f6dfd7d8d2dfd798d7df">[email&#160;protected]</a></button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ═══ FOOTER ═══ -->
-<div class="section bg-footer reveal-section" style="padding:56px 24px">
+<div class="section bg-footer bg-section reveal-section" style="padding:56px 24px">
   <div class="footer-inner">
     <a href="#" class="footer-logo fade-left">
-      <img src="https://raw.githubusercontent.com/danielhazmas/iandia-web-2/main/public/images/iandia-logo.png" alt="IANDIA">
+      <img src="https://raw.githubusercontent.com/danielhazmas/iandia-html/main/images/iandia-logo.png" alt="IANDIA">
       <span>IANDIA</span>
     </a>
     <div class="footer-links fade-up">
@@ -392,7 +399,7 @@ img{display:block;max-width:100%}
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── Particles ──
 (function(){
   const container = document.getElementById('particles');
@@ -444,12 +451,4 @@ document.querySelectorAll('.fade-up,.fade-left,.fade-right,.fade-scale').forEach
 
 // ── Hero auto-reveal (already visible on load) ──
 setTimeout(()=>{
-  document.querySelectorAll('.hero .fade-up,.hero .fade-scale').forEach(el=>{
-    const delay = el.dataset.delay || 0;
-    el.style.transitionDelay = delay + 's';
-    el.classList.add('visible');
-  });
-},100);
-</script>
-</body>
-</html>
+  document
