@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IANDIA — The Future of Intelligence</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231e40af'/%3E%3Cstop offset='100%25' stop-color='%232563eb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg transform='translate(60,60)'%3E%3Cpath d='M0,-45 C18,-45 38,-25 38,-8 C38,5 28,15 15,10 C5,6 -5,-10 0,-45Z' fill='url(%23g1)' transform='rotate(0)'/%3E%3Cpath d='M0,-45 C18,-45 38,-25 38,-8 C38,5 28,15 15,10 C5,6 -5,-10 0,-45Z' fill='url(%23g1)' transform='rotate(51.4)'/%3E%3Cpath d='M0,-45 C18,-45 38,-25 38,-8 C38,5 28,15 15,10 C5,6 -5,-10 0,-45Z' fill='url(%23g1)' transform='rotate(102.8)'/%3E%3Cpath d='M0,-45 C18,-45 38,-25 38,-8 C38,5 28,15 15,10 C5,6 -5,-10 0,-45Z' fill='url(%23g1)' transform='rotate(154.3)'/%3E%3Cpath d='M0,-45 C18,-45 38,-25 38,-8 C38,5 28,15 15,10 C5,6 -5,-10 0,-45Z' fill='url(%23g1)' transform='rotate(205.7)'/%3E%3Cpath d='M0,-45 C18,-45 38,-25 38,-8 C38,5 28,15 15,10 C5,6 -5,-10 0,-45Z' fill='url(%23g1)' transform='rotate(257.1)'/%3E%3Cpath d='M0,-45 C18,-45 38,-25 38,-8 C38,5 28,15 15,10 C5,6 -5,-10 0,-45Z' fill='url(%23g1)' transform='rotate(308.6)'/%3E%3C/g%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue-600:#2563eb;--blue-500:#3b82f6;--blue-400:#60a5fa;--blue-100:#dbeafe;
+  --cyan-400:#22d3ee;--indigo-500:#6366f1;
+  --gray-900:#111827;--gray-500:#6b7280;--gray-400:#9ca3af;--gray-300:#d1d5db;--gray-100:#f3f4f6;
+  --glass:rgba(255,255,255,0.6);--glass-border:rgba(255,255,255,0.5);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--gray-900);background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--blue-100);color:var(--blue-600)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--blue-100);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:var(--blue-400)}
+a{text-decoration:none;color:inherit}
+button{border:none;cursor:pointer;font-family:inherit}
+img{display:block;max-width:100%}
+
+/* ── Particles ── */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.particle{position:absolute;border-radius:50%;background:var(--blue-400);will-change:transform,opacity}
+
+/* ── Navbar ── */
+.navbar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;width:95%;max-width:1200px;animation:slideDown .8s cubic-bezier(.22,1,.36,1) both;animation-delay:.2s}
+.navbar-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{flex-shrink:0;transition:transform .3s}
+.nav-logo:hover{transform:scale(1.05)}
+.nav-logo img{height:56px;width:auto;filter:drop-shadow(0 2px 8px rgba(37,99,235,.1))}
+.navbar-glass{display:flex;align-items:center;gap:4px;padding:8px 8px 8px 20px;border-radius:9999px;backdrop-filter:blur(40px) saturate(1.8);-webkit-backdrop-filter:blur(40px) saturate(1.8);background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.4);box-shadow:0 4px 30px rgba(0,0,0,.03),0 1px 2px rgba(0,0,0,.02),inset 0 1px 0 rgba(255,255,255,.6);transition:all .5s}
+.navbar.scrolled .navbar-glass{background:rgba(255,255,255,.72);box-shadow:0 4px 30px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.03),inset 0 1px 0 rgba(255,255,255,.7);border-color:rgba(255,255,255,.6)}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{padding:8px 18px;font-size:13.5px;font-weight:500;color:var(--gray-500);border-radius:9999px;transition:all .25s;letter-spacing:.01em}
+.nav-links a:hover{color:var(--blue-600);background:rgba(59,130,246,.06);transform:scale(1.04)}
+.nav-cta{padding:10px 22px;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--blue-600),var(--blue-500));border-radius:9999px;letter-spacing:.03em;transition:all .3s;position:relative;overflow:hidden;margin-left:4px}
+.nav-cta:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 12px 30px rgba(37,99,235,.3)}
+.nav-cta .shimmer{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-12deg) translateX(-200%);animation:shimmer 3s infinite 2s}
+.nav-mobile-btn{display:none;padding:8px;background:none}
+.nav-mobile-btn svg{width:20px;height:20px;color:var(--gray-500)}
+
+/* ── Glass Card ── */
+.glass-card{background:var(--glass);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid var(--glass-border);box-shadow:0 8px 32px rgba(0,0,0,.06);border-radius:24px;transition:all .4s cubic-bezier(.22,1,.36,1)}
+.glass-card:hover{transform:scale(1.03) translateY(-8px);box-shadow:0 0 60px rgba(59,130,246,.12),0 30px 60px rgba(0,0,0,.08);border-color:rgba(147,197,253,.5)}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;font-size:14px;font-weight:600;border-radius:16px;letter-spacing:.02em;transition:all .3s;position:relative;overflow:hidden}
+.btn-primary{color:#fff;background:linear-gradient(135deg,var(--blue-600),var(--blue-500));box-shadow:0 8px 30px rgba(37,99,235,.25)}
+.btn-primary:hover{transform:scale(1.05) translateY(-3px);box-shadow:0 20px 40px rgba(37,99,235,.35)}
+.btn-primary .shimmer{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transform:skewX(-12deg) translateX(-200%);animation:shimmer 2.5s infinite 2s}
+.btn-secondary{color:var(--gray-500);background:rgba(255,255,255,.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.4)}
+.btn-secondary:hover{transform:scale(1.05) translateY(-3px);background:rgba(255,255,255,.8);box-shadow:0 15px 35px rgba(0,0,0,.08)}
+.btn svg{width:16px;height:16px}
+
+/* ── Scroll Reveal ── */
+.reveal-section{opacity:.3;transition:opacity 1.2s ease-out}
+.reveal-section.visible{opacity:1}
+.fade-up{opacity:0;transform:translateY(50px) scale(.96);transition:all .7s cubic-bezier(.22,1,.36,1)}
+.fade-up.visible{opacity:1;transform:translateY(0) scale(1)}
+.fade-left{opacity:0;transform:translateX(-60px);transition:all .7s cubic-bezier(.22,1,.36,1)}
+.fade-left.visible{opacity:1;transform:translateX(0)}
+.fade-right{opacity:0;transform:translateX(60px);transition:all .7s cubic-bezier(.22,1,.36,1)}
+.fade-right.visible{opacity:1;transform:translateX(0)}
+.fade-scale{opacity:0;transform:scale(.8);transition:all .6s cubic-bezier(.22,1,.36,1)}
+.fade-scale.visible{opacity:1;transform:scale(1)}
+
+/* ── Section backgrounds ── */
+.bg-hero{background:radial-gradient(ellipse at 20% 50%,rgba(37,99,235,.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(6,182,212,.12) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(99,102,241,.1) 0%,transparent 50%)}
+.bg-services{background:radial-gradient(ellipse at 70% 30%,rgba(99,102,241,.14) 0%,transparent 50%),radial-gradient(ellipse at 20% 70%,rgba(59,130,246,.12) 0%,transparent 50%)}
+.bg-work{background:radial-gradient(ellipse at 30% 40%,rgba(6,182,212,.13) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(37,99,235,.15) 0%,transparent 50%)}
+.bg-process{background:radial-gradient(ellipse at 60% 30%,rgba(59,130,246,.12) 0%,transparent 50%),radial-gradient(ellipse at 20% 80%,rgba(147,197,253,.15) 0%,transparent 50%)}
+.bg-cta{background:radial-gradient(ellipse at 50% 50%,rgba(37,99,235,.18) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(6,182,212,.12) 0%,transparent 50%)}
+.bg-footer{background:radial-gradient(ellipse at 50% 50%,rgba(59,130,246,.06) 0%,transparent 60%)}
+
+/* ── Hero ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:140px 24px 80px;position:relative;overflow:hidden}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:orbPulse 8s ease-in-out infinite}
+.hero-orb-1{width:600px;height:600px;background:rgba(37,99,235,.12);top:-15%;left:-10%;animation-delay:0s}
+.hero-orb-2{width:450px;height:450px;background:rgba(6,182,212,.1);bottom:-10%;right:-8%;animation-delay:3s}
+.hero-orb-3{width:300px;height:300px;background:rgba(99,102,241,.08);top:30%;right:15%;animation-delay:5s}
+.hero-ring{position:absolute;border-radius:50%;border:1px solid rgba(59,130,246,.08);pointer-events:none}
+.hero-ring-1{width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-50%);animation:ringRotate 60s linear infinite}
+.hero-ring-2{width:500px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);animation:ringRotate 45s linear infinite reverse}
+.hero-ring-3{width:900px;height:900px;top:50%;left:50%;transform:translate(-50%,-50%);border-style:dashed;border-color:rgba(59,130,246,.05);animation:ringRotate 80s linear infinite}
+.hero-ring .ring-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--blue-400);box-shadow:0 0 12px var(--blue-400);top:-3px;left:50%}
+.hero-center{position:relative;z-index:10;text-align:center;max-width:900px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;padding:10px 24px;border-radius:9999px;background:rgba(255,255,255,.5);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.5);margin-bottom:40px;box-shadow:0 4px 20px rgba(0,0,0,.03)}
+.hero-eyebrow .line{width:24px;height:1px;background:linear-gradient(90deg,transparent,var(--blue-400),transparent)}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--blue-500);animation:pulse 2s infinite}
+.hero-eyebrow span{font-size:11px;font-weight:600;color:var(--blue-600);letter-spacing:.15em;text-transform:uppercase}
+.hero h1{font-size:clamp(3.2rem,8vw,6.5rem);font-weight:800;line-height:.92;letter-spacing:-.04em;margin-bottom:28px}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--blue-600) 0%,var(--blue-500) 40%,var(--cyan-400) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .dot-blue{color:var(--blue-600);-webkit-text-fill-color:var(--blue-600)}
+.hero-sub{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--gray-500);line-height:1.75;max-width:600px;margin:0 auto 48px;font-weight:300}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:64px}
+.hero-trust{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;padding:24px 0;border-top:1px solid rgba(59,130,246,.08)}
+.hero-trust-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:default;transition:transform .3s}
+.hero-trust-item:hover{transform:scale(1.1) translateY(-4px)}
+.hero-trust-value{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-.03em;background:linear-gradient(180deg,var(--gray-900),var(--gray-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-trust-label{font-size:10px;color:var(--gray-400);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.hero-trust-divider{width:1px;height:40px;background:linear-gradient(180deg,transparent,rgba(59,130,246,.15),transparent)}
+
+/* ── Section Headers ── */
+.section-header{text-align:center;margin-bottom:64px}
+.section-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;background:rgba(255,255,255,.7);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.5);box-shadow:0 2px 12px rgba(0,0,0,.04);font-size:11px;font-weight:600;color:var(--blue-600);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.section-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-.03em;margin-top:12px}
+.section-title .gradient{background:linear-gradient(135deg,var(--blue-600),var(--cyan-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Sections ── */
+.section{padding:112px 24px;position:relative;overflow:hidden}
+
+/* ── Bento Grid ── */
+.bento-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1152px;margin:0 auto}
+.bento-card{padding:32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;cursor:pointer}
+.bento-card.large{grid-column:span 2;grid-row:span 2}
+.bento-card.wide{grid-column:span 2}
+.bento-icon{width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.8);backdrop-filter:blur(20px);border:1px solid rgba(219,234,254,.5);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:all .3s;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.bento-card:hover .bento-icon{transform:scale(1.15) rotate(-5deg);box-shadow:0 8px 24px rgba(59,130,246,.15)}
+.bento-icon svg{width:20px;height:20px;color:var(--blue-600)}
+.bento-card h3{font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.bento-card.large h3{font-size:1.75rem}
+.bento-card p{color:var(--gray-400);line-height:1.7;font-weight:300;font-size:14px}
+.bento-card.large p{font-size:15px;max-width:380px}
+.bento-cta{margin-top:24px;font-size:14px;font-weight:500;color:var(--blue-600);display:inline-flex;align-items:center;gap:6px;opacity:0;transform:translateY(12px);transition:all .3s}
+.bento-card:hover .bento-cta{opacity:1;transform:translateY(0)}
+.bento-glow{position:absolute;bottom:-80px;right:-80px;width:192px;height:192px;background:rgba(59,130,246,.06);border-radius:50%;filter:blur(60px);opacity:0;transition:opacity .7s}
+.bento-card:hover .bento-glow{opacity:1}
+
+/* ── Case Studies ── */
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1152px;margin:0 auto}
+.case-card{padding:28px}
+.case-banner{width:100%;height:176px;border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;margin-bottom:24px;transition:transform .3s}
+.case-card:hover .case-banner{transform:scale(1.04)}
+.case-banner svg{width:40px;height:40px;color:rgba(255,255,255,.7)}
+.case-banner .tag{position:absolute;top:12px;left:12px;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.2);backdrop-filter:blur(12px);font-size:10px;font-weight:600;color:#fff;letter-spacing:.05em;text-transform:uppercase}
+.case-card h3{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;transition:color .3s}
+.case-card:hover h3{color:var(--blue-600)}
+.case-card p{color:var(--gray-400);font-size:14px;margin-top:6px;font-weight:300}
+.case-link{margin-top:20px;font-size:14px;font-weight:500;color:var(--blue-600);display:inline-flex;align-items:center;gap:6px;transition:gap .3s}
+.case-card:hover .case-link{gap:12px}
+
+/* ── Process ── */
+.process-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:960px;margin:0 auto}
+.process-card{padding:32px}
+.process-num{font-size:3.5rem;font-weight:900;background:linear-gradient(180deg,rgba(191,219,254,.8),rgba(219,234,254,.4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:all .5s;display:inline-block}
+.process-card:hover .process-num{background:linear-gradient(180deg,var(--blue-500),rgba(147,197,253,.6));-webkit-background-clip:text;background-clip:text;transform:scale(1.15) translateX(5px)}
+.process-card h3{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;margin-top:12px;margin-bottom:8px;transition:color .3s}
+.process-card:hover h3{color:var(--blue-600)}
+.process-card p{color:var(--gray-400);font-size:14px;font-weight:300;line-height:1.7}
+
+/* ── CTA ── */
+.cta-card{max-width:800px;margin:0 auto;padding:64px;text-align:center;position:relative;overflow:hidden}
+.cta-card .glow-1{position:absolute;top:-96px;right:-96px;width:288px;height:288px;background:rgba(59,130,246,.06);border-radius:50%;filter:blur(60px)}
+.cta-card .glow-2{position:absolute;bottom:-96px;left:-96px;width:224px;height:224px;background:rgba(6,182,212,.06);border-radius:50%;filter:blur(60px)}
+.cta-icon{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--blue-600),var(--blue-400));display:flex;align-items:center;justify-content:center;margin:0 auto 32px;box-shadow:0 12px 32px rgba(37,99,235,.2);transition:transform .4s;cursor:pointer}
+.cta-icon:hover{transform:scale(1.1) rotate(-10deg)}
+.cta-icon svg{width:28px;height:28px;color:#fff}
+.cta-card h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:20px}
+.cta-card p{color:var(--gray-400);font-size:18px;max-width:540px;margin:0 auto 40px;line-height:1.7;font-weight:300}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* ── Footer ── */
+.footer{padding:56px 24px;border-top:1px solid rgba(243,244,246,.5)}
+.footer-inner{max-width:1152px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer-logo{display:flex;align-items:center;gap:10px;transition:transform .3s}
+.footer-logo:hover{transform:scale(1.05)}
+.footer-logo img{height:32px;width:auto}
+.footer-logo span{font-weight:700;letter-spacing:.18em;font-size:1.05rem;background:linear-gradient(135deg,#1e40af,var(--blue-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-links{display:flex;gap:32px}
+.footer-links a{font-size:14px;color:var(--gray-400);font-weight:500;transition:all .25s}
+.footer-links a:hover{color:var(--blue-600);transform:scale(1.1) translateY(-2px)}
+.footer-copy{font-size:12px;color:var(--gray-300);font-weight:500}
+
+/* ── Gradients for banners ── */
+.gradient-blue{background:linear-gradient(135deg,var(--blue-600),var(--blue-400))}
+.gradient-cyan{background:linear-gradient(135deg,#06b6d4,var(--blue-500))}
+.gradient-indigo{background:linear-gradient(135deg,var(--indigo-500),var(--blue-500))}
+
+/* ── Animations ── */
+@keyframes slideDown{from{transform:translateX(-50%) translateY(-100px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.4)}}
+@keyframes shimmer{to{transform:skewX(-12deg) translateX(200%)}}
+@keyframes orbPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.15);opacity:1}}
+@keyframes ringRotate{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* ── Responsive ── */
+@media(max-width:1024px){
+  .hero h1{font-size:clamp(2.8rem,7vw,4.5rem)}
+}
+@media(max-width:768px){
+  .bento-grid,.cases-grid{grid-template-columns:1fr}
+  .bento-card.large,.bento-card.wide{grid-column:span 1;grid-row:span 1}
+  .process-grid{grid-template-columns:1fr}
+  .nav-links,.nav-cta{display:none!important}
+  .nav-mobile-btn{display:block}
+  .navbar-glass{padding:8px 12px}
+  .nav-logo img{height:44px}
+  .cta-card{padding:40px 24px}
+  .footer-inner{flex-direction:column;text-align:center}
+  .hero-ring{display:none}
+  .hero-trust{gap:24px}
+  .hero-trust-divider{width:40px;height:1px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ PARTICLES ═══ -->
+<div id="particles"></div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-wrap">
+    <a href="#" class="nav-logo"><img src="https://raw.githubusercontent.com/danielhazmas/iandia-web-2/main/public/images/iandia-logo.png" alt="IANDIA"></a>
+    <div class="navbar-glass">
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+      </div>
+      <button class="nav-cta">Get Started <span class="shimmer"></span></button>
+      <button class="nav-mobile-btn" onclick="document.querySelector('.nav-links').classList.toggle('show-mobile')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero bg-hero" id="home">
+  <!-- Ambient orbs -->
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <!-- Orbital rings -->
+  <div class="hero-ring hero-ring-1"><div class="ring-dot"></div></div>
+  <div class="hero-ring hero-ring-2"><div class="ring-dot"></div></div>
+  <div class="hero-ring hero-ring-3"></div>
+
+  <div class="hero-center">
+    <!-- Eyebrow -->
+    <div class="hero-eyebrow fade-up" data-delay="0.3">
+      <div class="line"></div>
+      <div class="dot"></div>
+      <span>AI-Powered Innovation</span>
+      <div class="dot"></div>
+      <div class="line"></div>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="fade-up" data-delay="0.5">The Future of<br><span class="gradient">Intelligence</span><span class="dot-blue">.</span></h1>
+
+    <!-- Subtitle -->
+    <p class="hero-sub fade-up" data-delay="0.7">We design, build, and deploy enterprise-grade AI systems that transform how businesses operate — from generative models to intelligent automation.</p>
+
+    <!-- CTAs -->
+    <div class="hero-btns fade-up" data-delay="0.85">
+      <button class="btn btn-primary">Start a Project <span class="shimmer"></span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <button class="btn btn-secondary">View Our Work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+
+    <!-- Trust metrics -->
+    <div class="hero-trust fade-up" data-delay="1">
+      <div class="hero-trust-item">
+        <div class="hero-trust-value">150+</div>
+        <div class="hero-trust-label">AI Models Deployed</div>
+      </div>
+      <div class="hero-trust-divider"></div>
+      <div class="hero-trust-item">
+        <div class="hero-trust-value">98%</div>
+        <div class="hero-trust-label">Client Retention</div>
+      </div>
+      <div class="hero-trust-divider"></div>
+      <div class="hero-trust-item">
+        <div class="hero-trust-value">3.2B</div>
+        <div class="hero-trust-label">Data Points Processed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<div class="section bg-services reveal-section" id="services">
+  <div class="section-header">
+    <div class="section-tag fade-scale">What We Do</div>
+    <h2 class="section-title fade-up">Built for the <span class="gradient">AI era</span></h2>
+  </div>
+  <div class="bento-grid">
+    <div class="glass-card bento-card large fade-up" data-delay="0.1">
+      <div><div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 3.7 4 .6-2.9 2.8.7 4L12 12.4 8.7 14l.7-4-2.9-2.7 4-.6L12 3z"/></svg></div>
+      <h3>Generative AI</h3>
+      <p>Custom LLMs, image generation, and content creation pipelines tuned for your brand and data.</p></div>
+      <div class="bento-cta">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="bento-glow"></div>
+    </div>
+    <div class="glass-card bento-card fade-up" data-delay="0.2">
+      <div><div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2.1 6.3 5 7.5V20a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-2.5c2.9-1.2 5-4.1 5-7.5a8 8 0 0 0-8-8z"/></svg></div>
+      <h3>ML Solutions</h3>
+      <p>Predictive analytics, NLP, computer vision — production-ready models at scale.</p></div>
+      <div class="bento-cta">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="bento-glow"></div>
+    </div>
+    <div class="glass-card bento-card fade-up" data-delay="0.3">
+      <div><div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.7-4 3-9 3s-9-1.3-9-3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/></svg></div>
+      <h3>Data Engineering</h3>
+      <p>Modern data pipelines, lakes, and real-time processing architectures.</p></div>
+      <div class="bento-cta">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="bento-glow"></div>
+    </div>
+    <div class="glass-card bento-card wide fade-up" data-delay="0.4">
+      <div><div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="3"/><path d="M8 16h.01M12 16h.01M16 16h.01"/></svg></div>
+      <h3>AI Automation</h3>
+      <p>End-to-end intelligent workflows that eliminate repetitive tasks and accelerate operations across your entire org.</p></div>
+      <div class="bento-cta">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="bento-glow"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CASE STUDIES ═══ -->
+<div class="section bg-work reveal-section" id="work">
+  <div class="section-header">
+    <div class="section-tag fade-scale">Case Studies</div>
+    <h2 class="section-title fade-up">Proven <span class="gradient">results</span></h2>
+  </div>
+  <div class="cases-grid" style="max-width:1152px;margin:0 auto">
+    <div class="glass-card case-card fade-up" data-delay="0.1">
+      <div class="case-banner gradient-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg><span class="tag">ML / Computer Vision</span></div>
+      <h3>FinTech Corp</h3><p>40% reduction in fraud detection time</p>
+      <div class="case-link">Read case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <div class="glass-card case-card fade-up" data-delay="0.25">
+      <div class="case-banner gradient-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg><span class="tag">Generative AI</span></div>
+      <h3>MedAI Labs</h3><p>2.3x faster diagnostic accuracy</p>
+      <div class="case-link">Read case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <div class="glass-card case-card fade-up" data-delay="0.4">
+      <div class="case-banner gradient-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg><span class="tag">Data Engineering</span></div>
+      <h3>RetailPro</h3><p>$12M annual revenue uplift</p>
+      <div class="case-link">Read case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROCESS ═══ -->
+<div class="section bg-process reveal-section">
+  <div class="section-header">
+    <div class="section-tag fade-scale">Our Process</div>
+    <h2 class="section-title fade-up">Concept to <span class="gradient">production</span></h2>
+  </div>
+  <div class="process-grid">
+    <div class="glass-card process-card fade-left" data-delay="0.1"><span class="process-num">01</span><h3>Discovery</h3><p>Deep-dive into your data, goals, and technical landscape.</p></div>
+    <div class="glass-card process-card fade-right" data-delay="0.2"><span class="process-num">02</span><h3>Architecture</h3><p>Design intelligent systems for your scale and security needs.</p></div>
+    <div class="glass-card process-card fade-left" data-delay="0.3"><span class="process-num">03</span><h3>Build & Train</h3><p>Develop, fine-tune, and test models against real-world scenarios.</p></div>
+    <div class="glass-card process-card fade-right" data-delay="0.4"><span class="process-num">04</span><h3>Deploy & Scale</h3><p>Ship production-grade AI with monitoring and optimization.</p></div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="section bg-cta reveal-section" id="about">
+  <div class="glass-card cta-card fade-up" data-delay="0.1" style="cursor:default">
+    <div class="glow-1"></div><div class="glow-2"></div>
+    <div style="position:relative;z-index:10">
+      <div class="cta-icon fade-scale" data-delay="0.2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <h2 class="fade-up" data-delay="0.3">Ready to build the <span class="gradient">future</span>?</h2>
+      <p class="fade-up" data-delay="0.4">Partner with a team that lives and breathes AI. From concept to production, we'll transform your most ambitious ideas into intelligent reality.</p>
+      <div class="cta-btns fade-up" data-delay="0.5">
+        <button class="btn btn-primary">Schedule a Call <span class="shimmer"></span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> hello@iandia.ai</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="section bg-footer reveal-section" style="padding:56px 24px">
+  <div class="footer-inner">
+    <a href="#" class="footer-logo fade-left">
+      <img src="https://raw.githubusercontent.com/danielhazmas/iandia-web-2/main/public/images/iandia-logo.png" alt="IANDIA">
+      <span>IANDIA</span>
+    </a>
+    <div class="footer-links fade-up">
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#work">Work</a><a href="#about">About</a>
+    </div>
+    <p class="footer-copy fade-right">© 2026 IANDIA. All rights reserved.</p>
+  </div>
+</div>
+
+<script>
+// ── Particles ──
+(function(){
+  const container = document.getElementById('particles');
+  for(let i=0;i<35;i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 1.5 + Math.random()*3;
+    const x = Math.random()*100;
+    const y = Math.random()*100;
+    const dur = 15 + Math.random()*25;
+    const delay = Math.random()*10;
+    const drift = 20 + Math.random()*40;
+    const op = .12 + Math.random()*.2;
+    p.style.cssText = `left:${x}%;top:${y}%;width:${size}px;height:${size}px;animation:particleFloat ${dur}s ${delay}s ease-in-out infinite;--drift:${drift}px;--op:${op}`;
+    container.appendChild(p);
+  }
+  const style = document.createElement('style');
+  style.textContent = `@keyframes particleFloat{0%,100%{transform:translate(0,0);opacity:0}25%{opacity:var(--op)}50%{transform:translate(calc(var(--drift)*.4),var(--drift));opacity:var(--op)}75%{opacity:var(--op)}100%{transform:translate(calc(var(--drift)*-.4),calc(var(--drift)*-1));opacity:0}}`;
+  document.head.appendChild(style);
+})();
+
+// ── Navbar scroll ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+});
+
+// ── Scroll Reveal (Intersection Observer) ──
+const observerOptions = {threshold:0.15};
+
+// Reveal sections (opacity 0.3 → 1)
+const sectionObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    e.target.classList.toggle('visible',e.isIntersecting);
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal-section').forEach(el=>sectionObs.observe(el));
+
+// Fade-up / fade-left / fade-right / fade-scale elements
+const fadeObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const delay = e.target.dataset.delay || 0;
+      e.target.style.transitionDelay = delay + 's';
+      e.target.classList.add('visible');
+    }
+  });
+},{threshold:0.1,rootMargin:'-40px'});
+document.querySelectorAll('.fade-up,.fade-left,.fade-right,.fade-scale').forEach(el=>fadeObs.observe(el));
+
+// ── Hero auto-reveal (already visible on load) ──
+setTimeout(()=>{
+  document.querySelectorAll('.hero .fade-up,.hero .fade-scale').forEach(el=>{
+    const delay = el.dataset.delay || 0;
+    el.style.transitionDelay = delay + 's';
+    el.classList.add('visible');
+  });
+},100);
+</script>
+</body>
+</html>
